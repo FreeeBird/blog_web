@@ -1,9 +1,12 @@
 <template>
   <div id="app">
-    <v-app >
-      <v-app-bar app light elevate-on-scroll color="white" >
-        <v-avatar color="indigo" size="36">
-          <v-icon dark>mdi-account-circle</v-icon>
+
+    <v-app>
+      <v-app-bar app light elevate-on-scroll color="white">
+        <v-spacer></v-spacer>
+
+        <v-avatar  size="36" >
+          <v-icon>mdi-account-circle</v-icon>
         </v-avatar>
         <v-toolbar-title>
           FreeeBird's BLOG
@@ -23,6 +26,9 @@
         <v-btn icon>
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
       </v-app-bar>
       <v-content>
         <v-container fluid>
