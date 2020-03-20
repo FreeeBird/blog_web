@@ -1,29 +1,51 @@
 <template>
   <div id="app">
-<!--    <img alt="Vue logo" src="./assets/logo.png">-->
-<!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
-    <Goo></Goo>
+    <v-app>
+      <v-app-bar app dark elevate-on-scroll color="primary" >
+        <v-toolbar-title>
+          BLOG
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn icon>
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+      </v-app-bar>
+      <v-content>
+        <p>
+        <router-link to="/goo">gggg</router-link>
+        </p>
+        <p><router-link to="/hello">hhh</router-link></p>
+
+        <v-container fluid>
+          <router-view></router-view>
+        </v-container>
+      </v-content>
+      <v-footer app>
+        footer
+      </v-footer>
+    </v-app>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import Goo from './components/Google-keep'
+
 export default {
   name: 'App',
   components: {
-    Goo
+
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  /*color: #2c3e50;*/
   margin-top: 60px;
 }
 </style>
