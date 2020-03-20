@@ -1,39 +1,54 @@
 <template>
   <div id="app">
-    <v-app>
-      <v-app-bar app dark elevate-on-scroll color="primary" >
+    <v-app >
+      <v-app-bar app light elevate-on-scroll color="white" >
+        <v-avatar color="indigo" size="36">
+          <v-icon dark>mdi-account-circle</v-icon>
+        </v-avatar>
         <v-toolbar-title>
-          BLOG
+          FreeeBird's BLOG
         </v-toolbar-title>
-        <v-spacer></v-spacer>
+        <v-btn text>
+          <router-link to="/">首页</router-link>
+        </v-btn>
+        <v-btn text>
+          归档
+        </v-btn>
+        <v-btn text>
+          链接
+        </v-btn>
+        <v-btn text>
+          关于
+        </v-btn>
         <v-btn icon>
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
       </v-app-bar>
       <v-content>
-        <p>
-        <router-link to="/goo">gggg</router-link>
-        </p>
-        <p><router-link to="/hello">hhh</router-link></p>
-
         <v-container fluid>
-          <router-view></router-view>
+          <router-view ></router-view>
         </v-container>
+        <v-btn color="red" dark fixed right bottom fab>
+          <v-icon>mdi-chevron-up</v-icon>
+        </v-btn>
       </v-content>
-      <v-footer app>
-        footer
+
+
+      <v-footer elevation="24" color="white" >
+        <myFooter></myFooter>
       </v-footer>
+
     </v-app>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-
+import myFooter from "@/components/Footer";
 export default {
   name: 'App',
   components: {
-
+    myFooter,
   }
 }
 </script>
@@ -46,6 +61,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   /*color: #2c3e50;*/
-  margin-top: 60px;
+  /*margin-top: 60px;*/
 }
 </style>
