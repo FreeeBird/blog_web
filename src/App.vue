@@ -36,7 +36,7 @@
         <v-container fluid>
           <router-view ></router-view>
         </v-container>
-        <v-btn color="red" dark fixed right bottom fab>
+        <v-btn color="primary" light fixed right bottom fab>
           <v-icon>mdi-chevron-up</v-icon>
         </v-btn>
       </v-content>
