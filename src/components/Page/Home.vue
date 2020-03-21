@@ -13,6 +13,22 @@
                     <v-card-subtitle class="pb-0">MoGu Kingdom</v-card-subtitle>
                     <v-card-text class="text--primary">
                         <div>吹灭读书灯，满身都是月</div>
+
+                        <v-row>
+                            <v-col cols="4">
+                                <div>文章</div>
+                                <div>13</div>
+                            </v-col>
+                            <v-col cols="4">
+                                <div>分类</div>
+                                <div>5</div>
+                            </v-col>
+                            <v-col cols="4">
+                                <div>评论</div>
+                                <div>38</div>
+                            </v-col>
+                        </v-row>
+
                     </v-card-text>
                     <v-card-actions>
                         <v-btn color="primary" outlined block>
@@ -24,17 +40,11 @@
 <!--                <v-subheader class="subtitle-1">分类</v-subheader>-->
                 <v-card class="mx-auto mb-4" max-width="400">
 
-                    <v-list elevation="2">
-                        <v-subheader class="text--primary">
-                            <v-icon left color="primary">mdi-label</v-icon>分类
-                            <v-spacer></v-spacer>
-                            <v-btn text>More</v-btn>
+                    <v-list>
+                        <v-subheader>
+                            分类
                         </v-subheader>
-                        <v-list-item
-                                v-for="(item,i) in items2"
-                                :key="item.title"
-                                @click="true"
-                        >
+                        <v-list-item v-for="(item,i) in items2" :key="item.title" @click="true">
 <!--                            <v-list-item-icon>-->
 <!--                                <v-icon v-text="item.icon"></v-icon>-->
 <!--                            </v-list-item-icon>-->
@@ -44,18 +54,18 @@
                                 {{ item.text }}
                             </v-list-item-content>
                             <v-list-item-action-text>
-                                <v-chip pill>{{i}}</v-chip>
+                                <v-chip label outlined >{{i}}</v-chip>
                             </v-list-item-action-text>
                         </v-list-item>
+                        <v-btn text>More</v-btn>
                     </v-list>
+
                 </v-card>
 
                 <v-card class="mx-auto mb-4" max-width="400">
-                    <v-list elevation="2">
+                    <v-list>
                         <v-subheader class="text--primary">
-                            <v-icon left color="primary">mdi-label</v-icon>链接
-                            <v-spacer></v-spacer>
-                            <v-btn text >More</v-btn>
+                            链接
                         </v-subheader>
                         <v-list-item v-for="item in items2" :key="item.title" @click="true">
                              <v-list-item-icon>
@@ -65,6 +75,7 @@
                                 <v-list-item-title class="text-left" v-text="item.text"></v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
+                        <v-btn text>More</v-btn>
                     </v-list>
                 </v-card>
             </v-col>
@@ -72,10 +83,10 @@
             <v-col cols="4">
                 <v-row>
                     <v-col v-for="(item, i) in items" :key="i" cols="12">
-                        <v-card class="v-card--hover" light>
+                        <v-card class="v-card--hover">
                             <v-list-item three-line>
                                 <v-list-item-content>
-                                    <v-list-item-title class="headline text-left">{{item.title}}</v-list-item-title>
+                                    <v-list-item-title class="text-left">{{item.title}}</v-list-item-title>
                                     <v-list-item-subtitle class="text-left">
                                         Greyhound divisely hello coldly fonwderfully
                                         Greyhound divisely hello coldly fonwderfully
@@ -112,24 +123,24 @@
 <!--            右侧-->
             <v-col cols="2">
                 <v-list elevation="2" class="mb-4">
-                    <v-subheader class="text--primary"><v-icon left color="primary">mdi-label</v-icon>最近热门</v-subheader>
+                    <v-subheader>最近热门</v-subheader>
                     <v-list-item v-for="item in items" :key="item.title" @click="true">
-                        <v-list-item-avatar>
-                            <v-img :src="item.src"></v-img>
-                        </v-list-item-avatar>
+<!--                        <v-list-item-avatar>-->
+<!--                            <v-img :src="item.src"></v-img>-->
+<!--                        </v-list-item-avatar>-->
                         <v-list-item-content >
-                            <v-list-item-title v-text="item.title"></v-list-item-title>
+                            {{item.title}}
                         </v-list-item-content>
                         <v-list-item-action-text>
-                            {{ Math.floor(Math.random()*1000) }}
+                            <v-chip outlined label>{{ Math.floor(Math.random()*1000) }}</v-chip>
                         </v-list-item-action-text>
                     </v-list-item>
                 </v-list>
                 <v-list elevation="2" class="mb-4" >
-                    <v-subheader class="text--primary"><v-icon left color="primary">mdi-label</v-icon>最新评论</v-subheader>
+                    <v-subheader>最新评论</v-subheader>
                     <v-list-item v-for="item in items" :key="item.title" @click="true" two-line>
                         <v-list-item-content >
-                            <v-list-item-title v-text="item.title" class="text-left"></v-list-item-title>
+                            <v-list-item-title v-text="item.title.slice(0,4)" class="text-left"></v-list-item-title>
                             <v-list-item-subtitle class="text-left">It's really good.</v-list-item-subtitle>
                         </v-list-item-content>
                         <v-list-item-action-text>

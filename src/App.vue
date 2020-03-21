@@ -23,12 +23,14 @@
         <v-btn text>
           关于
         </v-btn>
+        <v-spacer></v-spacer>
+
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
         <v-btn icon>
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
-        <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
       </v-app-bar>
       <v-content>
         <v-container fluid>
