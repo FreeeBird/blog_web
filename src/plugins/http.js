@@ -21,13 +21,9 @@ service.defaults.withCredentials = true;
 service.interceptors.response.use(
     response => {
         const res = response.data
-        // if(res.code !== 1000){
-        //     this.$toast({
-        //         text: res.code,
-        //         color: "red"
-        //     })
-        // }
-        vue.prototype.$toast(res)
+        if(res.code !== 2000){
+            vue.prototype.$toast(res.message)
+        }
         return res;
     },
     error => {

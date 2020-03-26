@@ -5,7 +5,7 @@
                 <v-btn icon>
                     <v-icon large>mdi-heart</v-icon>
                 </v-btn>
-                COPYRIGHT © {{ new Date().getFullYear() }} FreeeBird'S BLOG
+                COPYRIGHT © {{ new Date().getFullYear() }} {{title}}
             </p>
         </v-row>
     </div>
@@ -13,7 +13,14 @@
 
 <script>
     export default {
-        name: "myFooter"
+        name: "myFooter",
+        props:{
+            title:{
+                type: String,
+                default: "blog",
+                require: true
+            },
+        },
     }
 </script>
 

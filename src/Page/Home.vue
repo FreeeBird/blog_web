@@ -4,15 +4,16 @@
             <v-col cols="2"></v-col>
 <!--            左侧-->
             <v-col cols="2">
+<!--                个人介绍-->
                 <v-card class="mx-auto mb-4" >
                     <v-avatar size="200">
                         <v-img  src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584708935012&di=dd98f67faf63c622604fd7dbda25a2e6&imgtype=0&src=http%3A%2F%2Fp2.ssl.cdn.btime.com%2Ft0188c6862d3ef51988.jpg">
                         </v-img>
                     </v-avatar>
-                    <v-card-title class="justify-center">QiNuoBiKe</v-card-title>
-                    <v-card-subtitle class="pb-0">MoGu Kingdom</v-card-subtitle>
+                    <v-card-title class="justify-center">{{ blogger.nickname }}</v-card-title>
+                    <v-card-subtitle class="subtitle-1"><v-icon small>mdi-map-marker</v-icon> {{blogger.address}}</v-card-subtitle>
                     <v-card-text class="text--primary pb-0">
-                        <p class="caption">kla fmdm afefd dsarthb</p>
+                        <p class="subtitle-2">{{ blogger.introduction }}</p>
                          <v-row dense>
                             <v-col cols="4">
                                 <div>文章</div>
@@ -29,34 +30,33 @@
                         </v-row>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn color="primary" outlined block @click="getBlogger">
+                        <v-btn color="primary" outlined block @click="true">
                             <v-icon>mdi-email</v-icon>
-                            QiNuoBiKe@163.com
+                            {{blogger.email}}
                         </v-btn>
                     </v-card-actions>
                 </v-card>
-                <v-card class="mx-auto mb-4" max-width="400">
+<!--                个人介绍end-->
+                <v-card class="mx-auto mb-4" max-width="400" hover>
                     <v-list>
-                        <v-subheader>
-                            分类
-                        </v-subheader>
-                        <v-list-item v-for="(item,i) in items2" :key="item.title" @click="true">
+                        <v-subheader class="font-weight-bold">分类</v-subheader>
+                        <v-list-item v-for="(item,i) in topCategory" :key="i" @click="true">
                             <v-list-item-content>
-                                <span class="text-left subtitle-2">{{ item.text }}</span>
+                                <span class="text-left subtitle-2">{{ item.name }}</span>
                             </v-list-item-content>
                             <v-list-item-action-text>
-                                <v-chip label outlined >{{i}}</v-chip>
+                                <v-chip label outlined >{{item.count}}</v-chip>
                             </v-list-item-action-text>
                         </v-list-item>
                     </v-list>
                     <v-card-actions>
-                        <v-btn outlined block color="primary">More</v-btn>
+                        <v-btn outlined block color="primary">更多分类</v-btn>
                     </v-card-actions>
                 </v-card>
 
-                <v-card class="mx-auto mb-4" max-width="400">
+                <v-card class="mx-auto mb-4" max-width="400" hover>
                     <v-list>
-                        <v-subheader>链接</v-subheader>
+                        <v-subheader class="font-weight-bold">链接</v-subheader>
                         <v-list-item v-for="item in links" :key="item.title" @click="true" two-line>
                             <v-list-item-content>
                                 <v-list-item-title class="text-left" v-text="item.title"></v-list-item-title>
@@ -65,7 +65,7 @@
                         </v-list-item>
                     </v-list>
                     <v-card-actions>
-                    <v-btn outlined block color="primary">More</v-btn>
+                    <v-btn outlined block color="primary">更多链接</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -146,11 +146,22 @@
 </template>
 
 <script>
-    import {blogger} from '@/api/common'
+    import { blogger } from '@/api/common'
+    import { getTop } from "@/api/category";
     export default {
         name: "Home",
         data: () => ({
-            snack: true,
+            blogger: {
+                address: "",
+                email: "1097@qq.com",
+                id: 1,
+                introduction: "",
+                nickname: "",
+                password: "",
+                portraitUrl: null,
+                username: "",
+            },
+
             page: 1,
             items: [
                 {
@@ -180,11 +191,10 @@
                 },
             ],
             item2: 1,
-            items2: [
-                { text: '测试', icon: 'mdi-clock' },
-                { text: '前端', icon: 'mdi-account' },
-                { text: '后端', icon: 'mdi-flag' },
-                { text: '运维', icon: 'mdi-flag' },
+            topCategory:[
+                { id: 1, name : '后端', count: 1 },
+                { id: 2, name : '前端', count: 1 },
+                { id: 3, name : '测试', count: 1 },
             ],
             links:[
                 { title: 'Github', url: 'Github.com' },
@@ -193,12 +203,22 @@
                 { title: '百度', url: 'baidu.com' },
             ],
         }),
+        created: function(){
+            this.getBlogger()
+            this.getTopCategory()
+        },
         methods:{
             getBlogger(){
                 blogger().then(respense => {
                     const res = respense
-                    console.log(res)
-                }).finally({
+                    this.blogger = res.data
+                })
+            },
+            // 获取最多分类
+            getTopCategory(){
+                getTop(4).then(response => {
+                    const res = response
+                    this.topCategory = res.data
                 })
             },
         },

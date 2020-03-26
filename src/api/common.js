@@ -8,3 +8,10 @@ export function blogger() {
         method: 'get',
     })
 }
+
+export function getBlogInfo() {
+    return request({
+        url: URL + '/info',
+        method: 'get',
+    })
+}

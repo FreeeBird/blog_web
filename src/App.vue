@@ -2,34 +2,34 @@
   <div id="app">
 
     <v-app>
-      <v-app-bar app dark elevate-on-scroll color="primary">
-        <v-spacer></v-spacer>
+      <v-app-bar app dark dense elevate-on-scroll color="primary">
 
         <v-avatar  size="36" >
-          <v-icon>mdi-account-circle</v-icon>
+          <v-icon>mdi-home</v-icon>
         </v-avatar>
         <v-toolbar-title>
-          QiNuo's BLOG
+          {{blog.title}}
         </v-toolbar-title>
+        <v-spacer></v-spacer>
         <v-btn text>
-          <router-link to="/">Home</router-link>
+          首页
         </v-btn>
         <v-btn text>
-          TimeLine
+          归档
         </v-btn>
         <v-btn text>
-          Links
+          链接
         </v-btn>
         <v-btn text>
-          About
+          关于
         </v-btn>
         <v-spacer></v-spacer>
 
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
-        <v-btn icon>
-          <v-icon>mdi-magnify</v-icon>
+        <v-btn text>
+          <v-icon>mdi-magnify</v-icon> 搜索文章
         </v-btn>
       </v-app-bar>
       <v-content>
@@ -43,7 +43,7 @@
 
 
       <v-footer elevation="24" color="white" >
-        <myFooter></myFooter>
+        <myFooter :title="blog.title"></myFooter>
       </v-footer>
 
     </v-app>
@@ -53,18 +53,45 @@
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
 import myFooter from "@/components/Footer";
+import {getBlogInfo} from "@/api/common";
 export default {
   name: 'App',
   components: {
     myFooter,
-  }
+  },
+  data(){
+    return{
+      blog:{
+        title: "",
+        description: "",
+        subtitle:"",
+        keywords:"",
+        createTime: null,
+        id: 1,
+      },
+    }
+  },
+  created: function () {
+    this.getBlogInformation()
+  },
+  methods:{
+    getBlogInformation(){
+      getBlogInfo().then(response => {
+        const res = response
+        this.blog = res.data
+        sessionStorage.setItem("blog",JSON.stringify(this.blog))
+        console.log("ss:")
+        console.log(JSON.parse(sessionStorage.getItem("blog")))
+      })
+    },
+  },
 }
 </script>
 
 <style>
 #app {
-  /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
-  font-family: "Microsoft YaHei UI","Roboto", sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /*font-family: "Microsoft YaHei UI","Roboto", sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
