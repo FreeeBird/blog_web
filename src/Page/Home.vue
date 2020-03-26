@@ -13,7 +13,7 @@
                     <v-card-subtitle class="pb-0">MoGu Kingdom</v-card-subtitle>
                     <v-card-text class="text--primary pb-0">
                         <p class="caption">kla fmdm afefd dsarthb</p>
-                        <v-row dense>
+                         <v-row dense>
                             <v-col cols="4">
                                 <div>文章</div>
                                 <div class="title">{{Math.floor(Math.random()*100)}}</div>
@@ -29,7 +29,7 @@
                         </v-row>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn color="primary" outlined block>
+                        <v-btn color="primary" outlined block @click="getBlogger">
                             <v-icon>mdi-email</v-icon>
                             QiNuoBiKe@163.com
                         </v-btn>
@@ -113,7 +113,7 @@
                 <v-card class="mx-auto mb-4">
                 <v-list >
                     <v-subheader>最近热门</v-subheader>
-                    <v-list-item v-for="item in items" :key="item.title" @click="true">
+                    <v-list-item v-for="(item,i) in items" :key="i" @click="true">
                         <v-list-item-content >
                             {{item.title}}
                         </v-list-item-content>
@@ -126,7 +126,7 @@
                 <v-card class="mx-auto mb-4">
                 <v-list class="mb-4" >
                     <v-subheader>最新评论</v-subheader>
-                    <v-list-item v-for="item in items" :key="item.title" @click="true" two-line>
+                    <v-list-item v-for="(item,i) in items" :key="i" @click="true" two-line>
                         <v-list-item-content >
                             <v-list-item-title v-text="item.title.slice(0,4)" class="text-left"></v-list-item-title>
                             <v-list-item-subtitle class="text-left">It's really good.</v-list-item-subtitle>
@@ -138,16 +138,19 @@
                 </v-list>
                 </v-card>
             </v-col>
-            <v-col cols="2"></v-col>
+            <v-col cols="2">
+            </v-col>
         </v-row>
 
     </div>
 </template>
 
 <script>
+    import {blogger} from '@/api/common'
     export default {
         name: "Home",
         data: () => ({
+            snack: true,
             page: 1,
             items: [
                 {
@@ -190,6 +193,15 @@
                 { title: '百度', url: 'baidu.com' },
             ],
         }),
+        methods:{
+            getBlogger(){
+                blogger().then(respense => {
+                    const res = respense
+                    console.log(res)
+                }).finally({
+                })
+            },
+        },
     }
 </script>
 
