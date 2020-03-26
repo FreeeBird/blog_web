@@ -12,7 +12,7 @@
                     <v-card-title class="justify-center">QiNuoBiKe</v-card-title>
                     <v-card-subtitle class="pb-0">MoGu Kingdom</v-card-subtitle>
                     <v-card-text class="text--primary pb-0">
-                        <p class="caption">吹灭读书灯，满身都是月</p>
+                        <p class="caption">kla fmdm afefd dsarthb</p>
                         <v-row dense>
                             <v-col cols="4">
                                 <div>文章</div>
@@ -48,9 +48,10 @@
                                 <v-chip label outlined >{{i}}</v-chip>
                             </v-list-item-action-text>
                         </v-list-item>
-                        <v-btn text>More</v-btn>
                     </v-list>
-
+                    <v-card-actions>
+                        <v-btn outlined block color="primary">More</v-btn>
+                    </v-card-actions>
                 </v-card>
 
                 <v-card class="mx-auto mb-4" max-width="400">
@@ -62,8 +63,10 @@
                                 <v-list-item-subtitle class="text-left"  v-text="item.url"></v-list-item-subtitle>
                             </v-list-item-content>
                         </v-list-item>
-                        <v-btn text>More</v-btn>
                     </v-list>
+                    <v-card-actions>
+                    <v-btn outlined block color="primary">More</v-btn>
+                    </v-card-actions>
                 </v-card>
             </v-col>
 <!--            中间-->
@@ -91,11 +94,13 @@
                                 <span class="text--secondary caption">发表于 2020-01-10</span>
                                 <v-btn text class="caption"># {{ item.artist }}</v-btn>
                                 <v-spacer></v-spacer>
-                                <v-btn text class="caption">
-                                    {{Math.floor(Math.random()*100)}}<v-icon dense>mdi-heart</v-icon>
+                                <v-btn text>
+                                    {{Math.floor(Math.random()*100)}}
+                                    <v-icon color="blue">mdi-comment-processing-outline</v-icon>
                                 </v-btn>
-                                <v-btn text class="caption">
-                                    {{Math.floor(Math.random()*100)}}<v-icon dense>mdi-account</v-icon>
+                                <v-btn text>
+                                    {{Math.floor(Math.random()*100)}}
+                                    <v-icon color="red">mdi-eye-outline</v-icon>
                                 </v-btn>
                             </v-card-actions>
                         </v-card>

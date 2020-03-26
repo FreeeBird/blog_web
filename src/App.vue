@@ -2,26 +2,26 @@
   <div id="app">
 
     <v-app>
-      <v-app-bar app light elevate-on-scroll color="white">
+      <v-app-bar app dark elevate-on-scroll color="primary">
         <v-spacer></v-spacer>
 
         <v-avatar  size="36" >
           <v-icon>mdi-account-circle</v-icon>
         </v-avatar>
         <v-toolbar-title>
-          FreeeBird's BLOG
+          QiNuo's BLOG
         </v-toolbar-title>
         <v-btn text>
-          <router-link to="/">首页</router-link>
+          <router-link to="/">Home</router-link>
         </v-btn>
         <v-btn text>
-          归档
+          TimeLine
         </v-btn>
         <v-btn text>
-          链接
+          Links
         </v-btn>
         <v-btn text>
-          关于
+          About
         </v-btn>
         <v-spacer></v-spacer>
 
