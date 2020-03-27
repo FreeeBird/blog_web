@@ -71,8 +71,8 @@
 <!--            中间-->
             <v-col cols="5">
                 <v-row>
-                    <v-col v-for="(item, i) in articles" :key="i" cols="12">
-                        <v-card class="v-card--hover">
+                    <v-col v-for="(item, i) in articles" :key="i" cols="12"  >
+                        <v-card class="v-card--hover" :to="'/article/'+item.id">
                             <v-list-item three-line>
                                 <v-list-item-content>
                                     <v-list-item-title class="text-left">{{item.title}}</v-list-item-title>
@@ -182,28 +182,24 @@
             length: 1,
         }),
         created: function(){
-            this.getBlogger()
-            this.getTopCategory()
-            this.getAllArticle()
+            this.getData()
         },
         methods:{
             toast(num){
                 this.$toast("mess"+num)
             },
-            getBlogger(){
+            goTo(id){
+                this.$router.push('/article/'+id)
+            },
+            getData(){
                 blogger().then(respense => {
                     const res = respense
                     this.blogger = res.data
                 })
-            },
-            // 获取最多分类
-            getTopCategory(){
                 getTop(4).then(response => {
                     const res = response
                     this.topCategory = res.data
                 })
-            },
-            getAllArticle(){
                 getAllArticle().then(response=>{
                     const res = response
                     this.articles = res.data
@@ -212,7 +208,7 @@
                 getHitArticles(4).then(response=>{
                     this.hitArticles = response.data
                 })
-            }
+            },
         },
     }
 </script>

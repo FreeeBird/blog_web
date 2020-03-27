@@ -3,6 +3,18 @@ import request from '@/plugins/http'
 const URL = '/article'
 
 /**
+ * 获取文章
+ * @param id
+ * @returns {AxiosPromise}
+ */
+export function getArticleById(id) {
+    return request({
+        url: URL+'/'+id,
+        method:'get'
+    })
+}
+
+/**
  * 获取所有
  * @returns {AxiosPromise}
  */
