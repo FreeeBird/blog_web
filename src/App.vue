@@ -16,7 +16,7 @@
         <v-btn text class="white--text">
           归档
         </v-btn>
-        <v-btn text class="white--text">
+        <v-btn text class="white--text" @click="goTo('/links')">
           链接
         </v-btn>
         <v-btn text class="white--text" @click="goTo('/about')">

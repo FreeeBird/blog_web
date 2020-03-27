@@ -1,8 +1,9 @@
 <template>
-    <div id="home">
+    <div id="gg">
         <v-row justify="center">
+            <v-col cols="2"></v-col>
 <!--            左侧-->
-            <v-col cols="2" offset="1">
+            <v-col cols="2">
 <!--                个人介绍-->
                 <v-card class="mx-auto mb-4" >
                     <v-avatar size="200">
@@ -69,7 +70,7 @@
                 </v-card>
             </v-col>
 <!--            中间-->
-            <v-col cols="5">
+            <v-col cols="4">
                 <v-row>
                     <v-col v-for="(item, i) in articles" :key="i" cols="12">
                         <v-card class="v-card--hover">
@@ -85,8 +86,8 @@
                                 </v-list-item-avatar>
                             </v-list-item>
                             <v-card-actions class="ma-0">
-                                <span class="text--secondary caption">发表于 {{item.createTime | dateFmt('YYYY/MM/DD')}}</span>
-                                <v-btn text class="caption"># {{ item.category }}</v-btn>
+                                <span class="text--secondary caption">发表于 {{item.createTime}}</span>
+                                <v-btn text class="caption"># {{ item.id }}</v-btn>
                                 <v-spacer></v-spacer>
                                 <v-btn text>
                                     {{item.comments}}
@@ -132,7 +133,8 @@
                 </v-list>
                 </v-card>
             </v-col>
-
+            <v-col cols="2">
+            </v-col>
         </v-row>
 
     </div>
@@ -143,7 +145,7 @@
     import { getTop } from "@/api/category";
     import {getAllArticle} from "@/api/article";
     export default {
-        name: "Home",
+        name: "gfg",
         data: () => ({
             blogger: {
                 address: "",
@@ -168,7 +170,7 @@
             ],
             articles:[
                 { id: 1,title: "",thumbnailUrl:"",summary:"",categoryId:1,
-                    category:"",hits:0,comments:0,createTime: "",updateTime:""},
+                category:"",hits:0,comments:0,createTime: "",updateTime:""},
             ],
             page: 1,
             pageSize: 10,
