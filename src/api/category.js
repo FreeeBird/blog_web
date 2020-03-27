@@ -21,7 +21,7 @@ export function getAll() {
 export function getTop(num) {
     return request({
         url: URL,
-        method: 'get',
+        method: 'post',
         data:{
             num
         }

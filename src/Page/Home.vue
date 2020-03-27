@@ -99,20 +99,22 @@
                             </v-card-actions>
                         </v-card>
                     </v-col>
-                    <v-pagination v-model="page" :length="length" total-visible="5"></v-pagination>
+
                 </v-row>
+                <v-pagination v-if="length>10" v-model="page" :length="length" total-visible="5"></v-pagination>
+                <v-sheet v-else color=" lighten-2">-- 暂无更多 --</v-sheet>
             </v-col>
 <!--            右侧-->
             <v-col cols="2">
                 <v-card class="mx-auto mb-4">
                 <v-list >
                     <v-subheader>最近热门</v-subheader>
-                    <v-list-item v-for="(item,i) in items" :key="i" @click="true">
+                    <v-list-item v-for="(item,i) in hitArticles" :key="i" @click="true">
                         <v-list-item-content >
                             {{item.title}}
                         </v-list-item-content>
                         <v-list-item-action-text>
-                            <v-chip outlined label>{{ Math.floor(Math.random()*1000) }}</v-chip>
+                            <v-chip outlined label>{{ item.hits }}</v-chip>
                         </v-list-item-action-text>
                     </v-list-item>
                 </v-list>
@@ -120,7 +122,7 @@
                 <v-card class="mx-auto mb-4">
                 <v-list class="mb-4" >
                     <v-subheader>最新评论</v-subheader>
-                    <v-list-item v-for="(item,i) in items" :key="i" @click="true" two-line>
+                    <v-list-item v-for="(item,i) in links" :key="i" @click="toast(i)" two-line>
                         <v-list-item-content >
                             <v-list-item-title v-text="item.title.slice(0,4)" class="text-left"></v-list-item-title>
                             <v-list-item-subtitle class="text-left">It's really good.</v-list-item-subtitle>
@@ -141,9 +143,10 @@
 <script>
     import { blogger } from '@/api/common'
     import { getTop } from "@/api/category";
-    import {getAllArticle} from "@/api/article";
+    import {getAllArticle, getHitArticles} from "@/api/article";
     export default {
         name: "Home",
+        components: {},
         data: () => ({
             blogger: {
                 address: "",
@@ -170,6 +173,10 @@
                 { id: 1,title: "",thumbnailUrl:"",summary:"",categoryId:1,
                     category:"",hits:0,comments:0,createTime: "",updateTime:""},
             ],
+            hitArticles:[
+                { id: 1,title: "",thumbnailUrl:"",summary:"",categoryId:1,
+                    category:"",hits:0,comments:0,createTime: "",updateTime:""},
+            ],
             page: 1,
             pageSize: 10,
             length: 1,
@@ -180,6 +187,9 @@
             this.getAllArticle()
         },
         methods:{
+            toast(num){
+                this.$toast("mess"+num)
+            },
             getBlogger(){
                 blogger().then(respense => {
                     const res = respense
@@ -198,6 +208,9 @@
                     const res = response
                     this.articles = res.data
                     this.length = this.articles.length
+                })
+                getHitArticles(4).then(response=>{
+                    this.hitArticles = response.data
                 })
             }
         },

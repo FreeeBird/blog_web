@@ -13,3 +13,17 @@ export function getAllArticle() {
     })
 }
 
+/**
+ * 获取点击数最多的num篇文章
+ * @param num
+ * @returns {AxiosPromise}
+ */
+export function getHitArticles(num) {
+    return request({
+        url: URL + '/hits',
+        method: 'post',
+        data:{
+            num
+        }
+    })
+}
