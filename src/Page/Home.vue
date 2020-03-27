@@ -30,7 +30,7 @@
                         </v-row>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn color="primary" outlined block @click="true">
+                        <v-btn color="secondary" block @click="true">
                             <v-icon>mdi-email</v-icon>
                             {{blogger.email}}
                         </v-btn>
@@ -50,7 +50,7 @@
                         </v-list-item>
                     </v-list>
                     <v-card-actions>
-                        <v-btn outlined block color="primary">更多分类</v-btn>
+                        <v-btn  block color="primary">更多分类</v-btn>
                     </v-card-actions>
                 </v-card>
 
@@ -161,8 +161,9 @@
                 portraitUrl: null,
                 username: "",
             },
-
             page: 1,
+            pageSize: 10,
+            length: 1,
             items: [
                 {
                     src: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',

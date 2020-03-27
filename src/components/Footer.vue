@@ -1,12 +1,15 @@
 <template>
     <div id="myFooter">
-        <v-row align="center" justify="center">
-            <p>
-                <v-btn icon>
-                    <v-icon large>mdi-heart</v-icon>
-                </v-btn>
-                COPYRIGHT © {{ new Date().getFullYear() }} {{title}}
-            </p>
+        <v-row>
+            <v-col cols="8" offset="2">
+                <p class="mx-auto">
+                    <v-btn icon>
+                        <v-icon color="primary">mdi-heart</v-icon>
+                    </v-btn>
+                    COPYRIGHT © {{ new Date().getFullYear() }} {{title}}
+                </p>
+            </v-col>
+
         </v-row>
     </div>
 </template>

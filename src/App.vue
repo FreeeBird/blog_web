@@ -2,25 +2,24 @@
   <div id="app">
 
     <v-app>
-      <v-app-bar app dark dense elevate-on-scroll color="primary">
-
+      <v-app-bar app  dense elevate-on-scroll color="primary">
         <v-avatar  size="36" >
-          <v-icon>mdi-home</v-icon>
+          <v-icon color="white">mdi-home</v-icon>
         </v-avatar>
-        <v-toolbar-title>
+        <v-toolbar-title class="white--text">
           {{blog.title}}
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn text>
+        <v-btn text class="white--text" @click="goTo('/')">
           首页
         </v-btn>
-        <v-btn text>
+        <v-btn text class="white--text">
           归档
         </v-btn>
-        <v-btn text>
+        <v-btn text class="white--text">
           链接
         </v-btn>
-        <v-btn text>
+        <v-btn text class="white--text" @click="goTo('/about')">
           关于
         </v-btn>
         <v-spacer></v-spacer>
@@ -28,11 +27,11 @@
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
-        <v-btn text>
+        <v-btn rounded >
           <v-icon>mdi-magnify</v-icon> 搜索文章
         </v-btn>
       </v-app-bar>
-      <v-content>
+      <v-content class="blue-grey lighten-5">
         <v-container fluid>
           <router-view ></router-view>
         </v-container>
@@ -75,13 +74,14 @@ export default {
     this.getBlogInformation()
   },
   methods:{
+    goTo(path){
+      this.$router.push(path)
+    },
     getBlogInformation(){
       getBlogInfo().then(response => {
         const res = response
         this.blog = res.data
         sessionStorage.setItem("blog",JSON.stringify(this.blog))
-        console.log("ss:")
-        console.log(JSON.parse(sessionStorage.getItem("blog")))
       })
     },
   },

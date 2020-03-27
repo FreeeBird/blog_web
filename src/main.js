@@ -10,6 +10,8 @@ Vue.config.productionTip = false
 
 Vue.use(VueRouter)
 Vue.use(registrySnack)
+
+
 new Vue({
   render: h => h(App),
   vuetify,
