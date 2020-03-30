@@ -2,47 +2,52 @@
   <div id="app">
 
     <v-app>
-      <v-app-bar app  dense elevate-on-scroll color="primary">
-        <v-avatar  size="36" >
-          <v-icon color="white">mdi-home</v-icon>
+      <v-app-bar app flat hide-on-scroll dense color="primary">
+        <v-spacer></v-spacer>
+        <v-avatar  size="24" >
+          <v-icon >mdi-home</v-icon>
         </v-avatar>
-        <v-toolbar-title class="white--text">
+        <v-toolbar-title class="mr-4">
           {{blog.title}}
         </v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn text class="white--text" @click="goTo('/')">
+
+        <v-btn text :ripple="false" @click="goTo('/')">
           首页
         </v-btn>
-        <v-btn text class="white--text">
+        <v-btn text :ripple="false">
           归档
         </v-btn>
-        <v-btn text class="white--text" @click="goTo('/links')">
+        <v-btn text :ripple="false" @click="goTo('/links')">
           链接
         </v-btn>
-        <v-btn text class="white--text" @click="goTo('/about')">
+        <v-btn text :ripple="false" @click="goTo('/about')">
           关于
         </v-btn>
-        <v-spacer></v-spacer>
+
 
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
-        <v-btn rounded >
-          <v-icon>mdi-magnify</v-icon> 搜索文章
+        <v-btn rounded icon>
+          <v-icon>mdi-magnify</v-icon>
         </v-btn>
       </v-app-bar>
-      <v-content class="">
-        <v-container >
+      <v-content class="accent">
+        <v-container fluid>
           <router-view ></router-view>
         </v-container>
-        <v-btn color="primary" light fixed right bottom fab>
+        <v-btn color="secondary" fixed right bottom fab small @click="$vuetify.goTo(0)">
           <v-icon>mdi-chevron-up</v-icon>
         </v-btn>
       </v-content>
 
-
-      <v-footer elevation="24" color="white" >
-        <myFooter :title="blog.title"></myFooter>
+      <v-footer  color="#f4f5f7" width="100%">
+        <v-col class="mx-auto text-center">
+          <v-btn icon>
+            <v-icon>mdi-heart</v-icon>
+          </v-btn>
+          COPYRIGHT © {{ blog.createTime | dateFmt("YYYY") }} {{blog.title}}
+        </v-col>
       </v-footer>
 
     </v-app>
@@ -50,7 +55,6 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import myFooter from "@/components/Footer";
 import {getBlogInfo} from "@/api/common";
 export default {

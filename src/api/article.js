@@ -52,3 +52,14 @@ export function getNewArticles(num) {
         }
     })
 }
+
+export function getArticleByCategory(cid,num,size) {
+    return request({
+        url: URL+'/category/'+cid,
+        method:'get',
+        params:{
+            pageNum:num,
+            pageSize: size
+        }
+    })
+}

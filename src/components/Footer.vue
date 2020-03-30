@@ -1,13 +1,11 @@
 <template>
     <div id="myFooter">
-        <v-row>
-            <v-col cols="8" offset="2">
-                <p class="mx-auto">
+        <v-row justify="center">
+            <v-col class="mx-auto text-center">
                     <v-btn icon>
-                        <v-icon color="primary">mdi-heart</v-icon>
+                        <v-icon>mdi-heart</v-icon>
                     </v-btn>
                     COPYRIGHT © {{ new Date().getFullYear() }} {{title}}
-                </p>
             </v-col>
 
         </v-row>

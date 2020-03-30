@@ -6,7 +6,7 @@ const URL = '/category'
  * 获取所有分类
  * @returns {AxiosPromise}
  */
-export function getAll() {
+export function getAllCategory() {
     return request({
         url: URL,
         method: 'get',

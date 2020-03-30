@@ -2,23 +2,20 @@
     <div id="article">
         <v-row justify="center">
             <v-col cols="8">
-                <v-card>
                     <v-img  height="200px" v-if="article.thumbnailUrl!=''" :src="article.thumbnailUrl"></v-img>
-                    <v-card-title>{{article.title}}</v-card-title>
-                    <v-card-subtitle class="pb-0 text-left">
+                    <div class="headline">{{article.title}}<v-btn color="secondary" text  small ># {{article.category }}</v-btn></div>
+                    <div class="pb-0 subtitle-1">
                         发表于 {{article.createTime | dateFmt("YYYY-MM-DD HH:mm:ss")}}
                         <v-icon small>mdi-eye-outline</v-icon>{{article.hits}}
                         <v-icon small>mdi-comment-processing-outline</v-icon>{{article.comments}}
-                    </v-card-subtitle>
+                    </div>
                     <v-card-actions>
-                        <v-btn color="secondary" small ># {{article.category }}</v-btn>
+
                     </v-card-actions>
                 <v-divider></v-divider>
                 <v-subheader class="subtitle-1">摘要：</v-subheader>
-                <blockquote class="blockquote font-italic text--secondary">{{ article.summary }}</blockquote>
-                    <v-divider></v-divider>
-
-                </v-card>
+                <blockquote class="blockquote text--secondary">{{ article.summary }}</blockquote>
+                <v-divider></v-divider>
                 <div  id="art" class="px-6" v-html="article.content"></div>
                 <v-divider></v-divider>
                 <div class="text-center subtitle-1 pa-12">
