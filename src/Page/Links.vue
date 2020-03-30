@@ -12,11 +12,15 @@
             </v-col>
         </v-row>
         <v-row justify="center">
+            <v-col cols="8">
+                <v-row>
             <v-col cols="3" v-for="link in links" :key="link.id" >
                 <v-card target="_blank" hover :href="link.url" >
                     <v-card-title>{{link.title}}</v-card-title>
                     <v-card-subtitle>{{link.description}}</v-card-subtitle>
                 </v-card>
+            </v-col>
+                </v-row>
             </v-col>
         </v-row>
     </div>
