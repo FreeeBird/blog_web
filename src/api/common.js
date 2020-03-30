@@ -11,7 +11,14 @@ export function blogger() {
 
 export function getBlogInfo() {
     return request({
-        url: URL + '/info',
+        url: URL + '/blogInfo',
+        method: 'get',
+    })
+}
+
+export function getLinks() {
+    return request({
+        url: URL + '/link',
         method: 'get',
     })
 }

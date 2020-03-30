@@ -18,10 +18,14 @@ export function getArticleById(id) {
  * 获取所有
  * @returns {AxiosPromise}
  */
-export function getAllArticle() {
+export function getAllArticle(num,size) {
     return request({
         url: URL,
         method: 'get',
+        params: {
+            pageNum:num,
+            pageSize:size
+        }
     })
 }
 
@@ -33,8 +37,17 @@ export function getAllArticle() {
 export function getHitArticles(num) {
     return request({
         url: URL + '/hits',
-        method: 'post',
-        data:{
+        method: 'GET',
+        params:{
+            num
+        }
+    })
+}
+export function getNewArticles(num) {
+    return request({
+        url: URL + '/newest',
+        method: 'get',
+        params:{
             num
         }
     })

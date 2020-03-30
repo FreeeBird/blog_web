@@ -2,9 +2,9 @@
     <div id="home">
         <v-row justify="center">
 <!--            左侧-->
-            <v-col cols="2" offset="1">
+            <v-col cols="3">
 <!--                个人介绍-->
-                <v-card class="mx-auto mb-4" >
+                <v-card class="mx-auto mb-4 text-center" >
                     <v-avatar size="200">
                         <v-img  :src="blogger.portraitUrl">
                         </v-img>
@@ -52,24 +52,9 @@
                         <v-btn  block color="primary">更多分类</v-btn>
                     </v-card-actions>
                 </v-card>
-
-                <v-card class="mx-auto mb-4" max-width="400" hover>
-                    <v-list>
-                        <v-subheader class="font-weight-bold">链接</v-subheader>
-                        <v-list-item v-for="item in links" :key="item.title" @click="true" two-line>
-                            <v-list-item-content>
-                                <v-list-item-title class="text-left" v-text="item.title"></v-list-item-title>
-                                <v-list-item-subtitle class="text-left"  v-text="item.url"></v-list-item-subtitle>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                    <v-card-actions>
-                    <v-btn outlined block color="primary">更多链接</v-btn>
-                    </v-card-actions>
-                </v-card>
             </v-col>
 <!--            中间-->
-            <v-col cols="5">
+            <v-col cols="6">
                 <v-row>
                     <v-col v-for="(item, i) in articles" :key="i" cols="12"  >
                         <v-card class="v-card--hover" :to="'/article/'+item.id">
@@ -101,14 +86,14 @@
                     </v-col>
 
                 </v-row>
-                <v-pagination v-if="length>10" v-model="page" :length="length" total-visible="5"></v-pagination>
+                <v-pagination v-if="length>0" v-model="page" @input="getArt" :length="length" total-visible="5"></v-pagination>
                 <v-sheet v-else color=" lighten-2">-- 暂无更多 --</v-sheet>
             </v-col>
 <!--            右侧-->
-            <v-col cols="2">
+            <v-col cols="3">
                 <v-card class="mx-auto mb-4">
                 <v-list >
-                    <v-subheader>最近热门</v-subheader>
+                    <v-subheader class="font-weight-bold">最热文章</v-subheader>
                     <v-list-item v-for="(item,i) in hitArticles" :key="i" @click="true">
                         <v-list-item-content >
                             {{item.title}}
@@ -120,18 +105,17 @@
                 </v-list>
                 </v-card>
                 <v-card class="mx-auto mb-4">
-                <v-list class="mb-4" >
-                    <v-subheader>最新评论</v-subheader>
-                    <v-list-item v-for="(item,i) in links" :key="i" @click="toast(i)" two-line>
-                        <v-list-item-content >
-                            <v-list-item-title v-text="item.title.slice(0,4)" class="text-left"></v-list-item-title>
-                            <v-list-item-subtitle class="text-left">It's really good.</v-list-item-subtitle>
-                        </v-list-item-content>
-                        <v-list-item-action-text>
-                            {{ new Date().toDateString() }}
-                        </v-list-item-action-text>
-                    </v-list-item>
-                </v-list>
+                    <v-list >
+                        <v-subheader class="font-weight-bold">最新文章</v-subheader>
+                        <v-list-item v-for="(item,i) in newArticles" :key="i" @click="true">
+                            <v-list-item-content >
+                                {{item.title}}
+                            </v-list-item-content>
+                            <v-list-item-action-text>
+                                {{ item.createTime | dateFmt("YYYY/MM/DD") }}
+                            </v-list-item-action-text>
+                        </v-list-item>
+                    </v-list>
                 </v-card>
             </v-col>
 
@@ -143,7 +127,7 @@
 <script>
     import { blogger } from '@/api/common'
     import { getTop } from "@/api/category";
-    import {getAllArticle, getHitArticles} from "@/api/article";
+    import {getAllArticle, getHitArticles, getNewArticles} from "@/api/article";
     export default {
         name: "Home",
         components: {},
@@ -158,12 +142,6 @@
                 portraitUrl: "",
                 username: "",
             },
-            links:[
-                { title: 'Github', url: 'Github.com' },
-                { title: 'StackOverflow', url: 'StackOverflow.com' },
-                { title: 'Google', url: 'Google.cn' },
-                { title: '百度', url: 'baidu.com' },
-            ],
             topCategory:[
                 { id: 1, name : '后端', count: 1 },
                 { id: 2, name : '前端', count: 1 },
@@ -177,12 +155,17 @@
                 { id: 1,title: "",thumbnailUrl:"",summary:"",categoryId:1,
                     category:"",hits:0,comments:0,createTime: "",updateTime:""},
             ],
+            newArticles:[
+                { id: 1,title: "",thumbnailUrl:"",summary:"",categoryId:1,
+                    category:"",hits:0,comments:0,createTime: "",updateTime:""},
+            ],
             page: 1,
-            pageSize: 10,
+            pageSize: 4,
             length: 1,
         }),
         created: function(){
             this.getData()
+            this.getArt()
         },
         methods:{
             toast(num){
@@ -198,15 +181,21 @@
                 })
                 getTop(4).then(response => {
                     const res = response
-                    this.topCategory = res.data
-                })
-                getAllArticle().then(response=>{
-                    const res = response
-                    this.articles = res.data
-                    this.length = this.articles.length
+                    this.topCategory = res.data.content
+                    this.length = res.data.totalElements
                 })
                 getHitArticles(4).then(response=>{
-                    this.hitArticles = response.data
+                    this.hitArticles = response.data.content
+                })
+                getNewArticles(4).then(response=>{
+                    this.newArticles = response.data.content
+                })
+            },
+            getArt(){
+                getAllArticle(this.page-1,this.pageSize).then(response=>{
+                    const res = response
+                    this.articles = res.data.content
+                    this.length = res.data.totalPages
                 })
             },
         },

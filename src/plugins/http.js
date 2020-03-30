@@ -3,7 +3,7 @@ import axios from 'axios'
 import Qs from 'qs'
 import vue from 'vue'
 
-const BASE_API = 'http://localhost:8080/blog/api';
+const BASE_API = 'http://localhost:8888/blog/api';
 // 创建axios实例
 const service = axios.create({
     // baseURL: process.env.BASE_API, // api 的 base_url

@@ -31,8 +31,8 @@
           <v-icon>mdi-magnify</v-icon> 搜索文章
         </v-btn>
       </v-app-bar>
-      <v-content class="blue-grey lighten-5">
-        <v-container fluid>
+      <v-content class="">
+        <v-container >
           <router-view ></router-view>
         </v-container>
         <v-btn color="primary" light fixed right bottom fab>
@@ -94,7 +94,7 @@ export default {
   /*font-family: "Microsoft YaHei UI","Roboto", sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /*text-align: center;*/
   /*color: #2c3e50;*/
   /*margin-top: 60px;*/
 }
