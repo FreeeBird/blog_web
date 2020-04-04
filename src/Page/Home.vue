@@ -2,7 +2,7 @@
     <div id="home">
         <v-row justify="center">
             <v-col cols="9">
-                <v-carousel cycle height="300" hide-delimiter-background :show-arrows="false">
+                <v-carousel cycle height="300" hide-delimiter-background :show-arrows="false"  style="border-radius: 8px">
                     <v-carousel-item v-for="(art, i) in newArticles" :key="i">
                         <v-card height="100%">
                             <v-img class="fill-height" :src="art.thumbnailUrl">
@@ -54,70 +54,20 @@
 <!--                    </v-card-text>-->
 
 <!--                </v-card>-->
-<!--&lt;!&ndash;                个人介绍end&ndash;&gt;-->
-<!--&lt;!&ndash;                <v-card class=" mb-4">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <v-list>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <v-subheader class="font-weight-bold">分类</v-subheader>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <v-list-item v-for="(item,i) in topCategory" :key="i" @click="true">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <v-list-item-content>&ndash;&gt;-->
-<!--&lt;!&ndash;                                <span class="text-left subtitle-2">{{ item.name }}</span>&ndash;&gt;-->
-<!--&lt;!&ndash;                            </v-list-item-content>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <v-list-item-action-text>&ndash;&gt;-->
-<!--&lt;!&ndash;                                <v-chip label outlined >{{item.count}}</v-chip>&ndash;&gt;-->
-<!--&lt;!&ndash;                            </v-list-item-action-text>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </v-list-item>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </v-list>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <v-card-actions>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <v-btn  block dark>更多分类</v-btn>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </v-card-actions>&ndash;&gt;-->
-<!--&lt;!&ndash;                </v-card>&ndash;&gt;-->
-<!--            </v-col>-->
 <!--            中间-->
             <v-col cols="6"  >
                 <v-row>
-                    <v-col cols="12">
+                    <v-col cols="12" class="mb-0 pb-0">
                         <div class="title">最新文章 <span class="caption">Latest Posts</span> </div>
                     </v-col>
-<!--                    <v-col cols="12" class="pa-0 mb-2">-->
-<!--                        <v-tabs v-model="tab" light color="primary" slider-color="blue" @change="getArt">-->
-<!--                            <v-tab>全部</v-tab>-->
-<!--                            <v-tab v-for="(item,i) in categories" :key="i">{{item.name}}</v-tab>-->
-<!--                        </v-tabs>-->
-<!--                    </v-col>-->
-<!--                    <v-col v-for="(item, i) in articles" :key="i" cols="12"  class="mb-2 pa-0">-->
-<!--                        <v-card flat hover :to="'/article/'+item.id">-->
-<!--                            <v-list-item three-line>-->
-<!--                                <v-list-item-avatar tile size="68" class="pb-0">-->
-<!--                                    <v-img :src="item.thumbnailUrl"></v-img>-->
-<!--                                </v-list-item-avatar>-->
-<!--                                <v-list-item-content class="pb-0">-->
-<!--                                    <v-list-item-title class="text-left">{{item.title}}-->
-<!--                                        </v-list-item-title>-->
-<!--                                    <v-list-item-subtitle class="text-left">-->
-<!--                                        {{item.summary}}-->
-<!--                                    </v-list-item-subtitle>-->
-<!--                                </v-list-item-content>-->
-<!--                            </v-list-item>-->
-<!--                            <v-card-actions class="ma-0 pt-1">-->
-<!--                                <span class="caption">发表于 {{item.createTime | dateFmt('YYYY/MM/DD')}} </span>-->
-<!--                                <v-btn text class="caption" small>#{{ item.category }}</v-btn>-->
-<!--                                <v-spacer></v-spacer>-->
-<!--                                <v-btn text :ripple="false" @click="false">-->
-<!--                                    <v-icon small>mdi-eye-outline</v-icon>-->
-<!--                                    {{item.hits}}-->
-<!--                                </v-btn>-->
-<!--                                <v-btn text :ripple="false" @click="false">-->
-<!--                                    <v-icon small>mdi-comment-processing-outline</v-icon>-->
-<!--                                    {{item.comments}}-->
-<!--                                </v-btn>-->
-<!--                            </v-card-actions>-->
-<!--                        </v-card>-->
-<!--                    </v-col>-->
-                    <v-col v-for="(item, i) in articles" :key="i" cols="12"  class="mb-2 pa-0 pl-1">
-                        <v-card flat hover min-height="100" :to="'/article/'+item.id" class="pl-1">
+                    <v-col cols="12" class="mt-0 mb-2 pl-1 pt-0">
+                        <v-card tile flat hover min-height="100"
+                                v-for="(item, i) in articles" :key="i"
+                                :to="'/article/'+item.id"
+                                class="pa-1 my-1">
                             <v-row>
-                                <v-col cols="4" class="pr-0">
-                                    <v-card height="100%" min-height="120" :img="item.thumbnailUrl"></v-card>
+                                <v-col cols="3" class="pr-0 ml-2">
+                                    <v-card style="border-radius: 8px" height="100%" min-height="120" :img="item.thumbnailUrl"></v-card>
                                 </v-col>
                                 <v-col cols="8">
                                     <div><v-btn class="my-btn" x-small depressed>{{item.category}}</v-btn></div>
