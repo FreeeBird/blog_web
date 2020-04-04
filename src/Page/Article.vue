@@ -27,7 +27,7 @@
 
         <v-row justify="center">
             <v-col cols="8">
-                <v-sheet elevation="0" min-height="400px"  id="art" v-html="article.content"></v-sheet>
+                <v-sheet elevation="0"   id="art" v-html="article.content"></v-sheet>
                 <v-divider></v-divider>
                 <div class="caption pa-2">
                     <span class="red--text">*</span>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名 · 最后编辑时间为: {{ article.updateTime | dateFmt}}

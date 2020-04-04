@@ -1,50 +1,50 @@
 <template>
     <div id="about">
         <v-row justify="center">
-            <v-col cols="8" class="fill-height">
-                <v-card>
-                <v-img max-height="240px"  src="https://i.loli.net/2020/04/04/pOebh9P67fWzyaR.png">
-                    <v-row align="end" class="lightbox pa-2 fill-height">
-                        <v-col>
-                            <div class="headline font-weight-bold">关于博客 <span class="subtitle-2">About</span></div>
-                        </v-col>
-                    </v-row>
+            <v-col cols="8">
+                <v-img style="border-radius: 8px" max-height="200px"  src="https://i.loli.net/2020/04/04/pOebh9P67fWzyaR.png">
+
                 </v-img>
-                </v-card>
             </v-col>
         </v-row>
         <v-row justify="center">
             <v-col cols="8">
-                <v-card>
+                <div class="title">关于博客 <span class="caption">About</span></div>
+            </v-col>
+        </v-row>
+        <v-row justify="center">
+            <v-col cols="8">
+                <v-card flat class="my-btn" dark>
                     <v-card-title class="headline">{{blog.title}}</v-card-title>
                     <v-card-subtitle>
                         {{blog.subtitle}}
-                        <v-chip-group>
-                            <v-chip dark v-for="(item, i) in keywords" :key="i">{{item}}</v-chip>
+                        <v-chip-group dark>
+                            <v-chip v-for="(item, i) in keywords" :key="i">{{item}}</v-chip>
                         </v-chip-group>
                     </v-card-subtitle>
                     <v-card-text>
                         {{ blog.description }}
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn text>了解更多</v-btn>
+
                     </v-card-actions>
                 </v-card>
             </v-col>
             <v-col cols="8">
-                <v-card color="" light>
+                <v-card  flat class="my-btn" dark>
                     <v-avatar class="float-left ma-4" size="100" tile>
                         <v-img :src="blogger.portraitUrl"></v-img>
                     </v-avatar>
                     <v-card-title class="headline font-weight-black">
                         {{blogger.nickname}}
-                        <div color="accent" class="caption ml-2"><v-icon small>mdi-map-marker</v-icon>{{blogger.address}}</div>
+
                     </v-card-title>
+                    <div color="accent" class="caption ml-2"><v-icon small>mdi-map-marker</v-icon>{{blogger.address}}</div>
                     <v-card-subtitle class="">
                         {{blogger.introduction}}
                     </v-card-subtitle>
                     <v-card-actions>
-                        <v-btn text color="accent">
+                        <v-btn text >
                             <v-icon>mdi-email</v-icon>
                             <span>{{blogger.email}}</span>
                         </v-btn>
