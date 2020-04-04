@@ -10,7 +10,12 @@
                                     <v-col cols="11">
                                         <div class="my-1"><v-btn class="my-btn" small depressed>{{art.category}}</v-btn></div>
                                         <div class="display-1 my-1">{{art.title}}</div>
-                                        <div class="subtitle-2 my-1">{{art.updateTime|dateFmt("YYYY/MM/DD")}}</div>
+                                        <div class="subtitle-2 my-1">
+                                            <v-avatar size="24">
+                                                <v-img :src="blogger.portraitUrl"></v-img>
+                                            </v-avatar>
+                                            <span> {{blogger.nickname}} · </span>
+                                            {{art.updateTime|dateFmt("YYYY-MM-DD")}}</div>
                                     </v-col>
                                 </v-row>
 
@@ -21,39 +26,6 @@
             </v-col>
         </v-row>
         <v-row justify="center">
-<!--            左侧-->
-<!--            <v-col cols="2" xs="12" sm="12" md="3" lg="2">-->
-<!--&lt;!&ndash;                个人介绍&ndash;&gt;-->
-<!--                <v-card class=" mb-4 text-center ">-->
-<!--                    <v-avatar size="100">-->
-<!--                        <v-img  :src="blogger.portraitUrl"></v-img>-->
-<!--                    </v-avatar>-->
-<!--                    <v-card-title class="justify-center">{{ blogger.nickname }}</v-card-title>-->
-<!--                    <v-card-subtitle class="caption"><v-icon small>mdi-map-marker</v-icon> {{blogger.address}}</v-card-subtitle>-->
-<!--                    <v-btn text small >-->
-<!--                        <v-icon>mdi-email</v-icon>-->
-<!--                        <span>{{blogger.email}}</span>-->
-<!--                    </v-btn>-->
-<!--                    <v-card-text class="text&#45;&#45;primary pb-0">-->
-<!--&lt;!&ndash;                        <p class="subtitle-2">{{ blogger.introduction }}</p>&ndash;&gt;-->
-
-<!--                         <v-row dense>-->
-<!--                            <v-col >-->
-<!--                                <div class="title blue&#45;&#45;text">{{ statistics.articleNum }}</div>-->
-<!--                                <div>文章</div>-->
-<!--                            </v-col>-->
-<!--                            <v-col >-->
-<!--                                <div class="title blue&#45;&#45;text">{{statistics.categoryNum}}</div>-->
-<!--                                <div>分类</div>-->
-<!--                            </v-col>-->
-<!--                            <v-col>-->
-<!--                                <div class="title blue&#45;&#45;text">{{statistics.commentNum+statistics.messageNum}}</div>-->
-<!--                                <div>留言</div>-->
-<!--                            </v-col>-->
-<!--                        </v-row>-->
-<!--                    </v-card-text>-->
-
-<!--                </v-card>-->
 <!--            中间-->
             <v-col cols="6"  >
                 <v-row>
@@ -66,21 +38,30 @@
                                 :to="'/article/'+item.id"
                                 class="pa-1 my-1">
                             <v-row>
-                                <v-col cols="3" class="pr-0 ml-2">
+                                <v-col cols="4" class="pr-0 ml-2">
                                     <v-card style="border-radius: 8px" height="100%" min-height="120" :img="item.thumbnailUrl"></v-card>
                                 </v-col>
-                                <v-col cols="8">
+                                <v-col cols="7">
                                     <div><v-btn class="my-btn" x-small depressed>{{item.category}}</v-btn></div>
                                     <div class="subtitle-2 font-weight-black">{{item.title}}</div>
                                     <div class="v-list-item--two-line caption font-weight-thin d-inline-block">{{item.summary}} </div>
-                                    <div class="caption">评论({{item.comments}}) · 浏览({{item.hits}}) · {{item.updateTime | dateFmt}}</div>
+                                    <div class="caption">
+                                        <v-avatar size="24">
+                                            <v-img :src="blogger.portraitUrl"></v-img>
+                                        </v-avatar>
+                                        <span> {{blogger.nickname}} · </span>
+                                        {{item.updateTime | dateFmt}} ·
+                                        评论({{item.comments}}) · 浏览({{item.hits}})</div>
                                 </v-col>
                             </v-row>
                         </v-card>
                     </v-col>
                 </v-row>
-                <v-pagination color="primary" circle v-if="length>0" v-model="page" @input="getArt" :length="length" total-visible="10"></v-pagination>
-                <v-sheet v-else class="text-center caption">加载完</v-sheet>
+                <v-row justify="start">
+                    <v-col>
+                        <v-pagination style="justify-content: start" color="primary" circle v-if="length>0" v-model="page" @input="getArt" :length="length" total-visible="10"></v-pagination>
+                    </v-col>
+                </v-row>
             </v-col>
 <!--            右侧-->
             <v-col cols="3">
@@ -96,7 +77,13 @@
                                 <v-col cols="8">
                                     <div><v-btn class="my-btn" x-small depressed>{{item.category}}</v-btn></div>
                                     <div class="subtitle-2 font-weight-black">{{item.title}}</div>
-                                    <div class="caption">{{item.updateTime | dateFmt}}</div>
+                                    <div class="caption">
+                                        <v-avatar size="18">
+                                            <v-img :src="blogger.portraitUrl"></v-img>
+                                        </v-avatar>
+                                        <span> {{blogger.nickname}} · </span>
+                                        {{item.updateTime | dateFmt}}
+                                    </div>
                                 </v-col>
                             </v-row>
                     </v-list-item>
@@ -218,13 +205,13 @@
 
 <style scoped>
 .my-btn{
-    background-image: linear-gradient( -90deg, #ABDCFF 0%, #2178ff 100%);
+    background:linear-gradient(135deg, #2178ff 0%,#5d93e6 100%);
     color: #ffffff;
     /*background-image: linear-gradient(-135deg,#2178ff 100%, #ABDCFF 10%);*/
 }
 .my-back{
     /*background-image: linear-gradient( -90deg, #ABDCFF 0%, #2178ff 100%);*/
-    background-color: #2178ff;
+    background:linear-gradient(135deg, #2178ff 0%,#5d93e6 100%);
     color: #ffffff;
     border-radius: 8px;
     /*background-image: linear-gradient(-135deg,#2178ff 100%, #ABDCFF 10%);*/

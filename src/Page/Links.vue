@@ -1,25 +1,30 @@
 <template>
     <div id="links">
-        <v-row>
-            <v-col offset="2" cols="8">
-                <v-img max-height="200px" src="https://i.loli.net/2020/03/27/Rj8mhbcaPuTXoFJ.jpg">
-                    <v-row align="end" class="lightbox white--text pa-2 fill-height">
-                        <v-col>
-                            <div class="headline font-weight-bold">相关链接</div>
-                        </v-col>
-                    </v-row>
+        <v-row justify="center">
+            <v-col cols="8">
+                <v-img style="border-radius: 8px" max-height="200px" src="https://i.loli.net/2020/03/27/Rj8mhbcaPuTXoFJ.jpg">
                 </v-img>
             </v-col>
         </v-row>
         <v-row justify="center">
             <v-col cols="8">
-                <v-row>
-            <v-col cols="3" v-for="link in links" :key="link.id" >
-                <v-card target="_blank" hover :href="link.url" >
-                    <v-card-title>{{link.title}}</v-card-title>
-                    <v-card-subtitle>{{link.description}}</v-card-subtitle>
-                </v-card>
+                <div class="title">相关链接 <span class="caption">Links</span></div>
             </v-col>
+        </v-row>
+        <v-row justify="center">
+            <v-col cols="8">
+                <v-row>
+                    <v-col cols="4" v-for="link in links" :key="link.id" >
+                        <v-card flat color="primary" class="my-btn" dark target="_blank" hover :href="link.url" >
+                            <v-card-title>{{link.title}}</v-card-title>
+                            <v-card-subtitle>
+                                <v-icon color="" left>mdi-link</v-icon><span class="caption">{{link.url}}</span>
+                            </v-card-subtitle>
+                            <v-card-text>
+                                {{link.description}}
+                            </v-card-text>
+                        </v-card>
+                    </v-col>
                 </v-row>
             </v-col>
         </v-row>
@@ -66,5 +71,9 @@
 </script>
 
 <style scoped>
-
+    .my-btn{
+        background:linear-gradient(135deg, #2178ff 0%,#5d93e6 100%);
+        color: #ffffff;
+        /*background-image: linear-gradient(-135deg,#2178ff 100%, #ABDCFF 10%);*/
+    }
 </style>

@@ -2,7 +2,7 @@
   <div id="app" >
 
     <v-app>
-      <v-app-bar  app dense elevation="2" color="white" >
+      <v-app-bar  app dense  elevate-on-scroll color="white" >
 
         <v-toolbar-title>
           <div class="title text-no-wrap ml-12 mr-12">
@@ -114,9 +114,5 @@ export default {
 .my-title{
   width: fit-content;
   border-bottom: #2178ff 2px solid;
-}
-.selectIndex{
-  color: #2178ff!important;
-  background-color: white!important;
 }
 </style>
