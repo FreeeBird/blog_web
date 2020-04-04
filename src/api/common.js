@@ -22,3 +22,10 @@ export function getLinks() {
         method: 'get',
     })
 }
+
+export function getStatistics() {
+    return request({
+        url: '/statistics',
+        method: 'get'
+    })
+}
