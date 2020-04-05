@@ -80,7 +80,7 @@
             handleSearch(){
                 if(this.keyword===''){
                     this.$toast("关键词不能为空",{
-                        color: 'warning'
+                        color: 'error'
                     })
                     return
                 }
