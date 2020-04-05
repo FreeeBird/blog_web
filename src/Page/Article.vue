@@ -51,7 +51,7 @@
                                 <v-textarea solo outlined dense v-model="content" placeholder="写下你的评论"></v-textarea>
                             </v-col>
                         </v-row>
-                        <div><v-btn class="my-btn" @click="postCom" depressed color="primary">发表评论 <span class="caption"> Post Comment</span></v-btn></div>
+                        <div><v-btn class="my-btn" @submit="getCom"  depressed color="primary">发表评论 <span class="caption"> Post Comment</span></v-btn></div>
                     </v-container>
                 </v-form>
                 <v-divider></v-divider>

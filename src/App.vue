@@ -17,7 +17,7 @@
           <v-tab @click="goTo('/links')">友链</v-tab>
           <v-tab  @click="goTo('/about')">关于</v-tab>
         </v-tabs>
-        <v-btn rounded icon color="primary" >
+        <v-btn rounded icon color="primary" @click="goTo('/search')">
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
 

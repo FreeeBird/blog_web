@@ -6,12 +6,14 @@ import Links from "@/Page/Links";
 import Article from "@/Page/Article";
 import Category from "@/Page/Category";
 import Archive from "@/Page/Archive";
+import Search from "@/Page/Search";
 
 const routes = [
     { path: '/' , component: Home},
     { path: '/about',component: About},
     { path: '/links',component: Links},
     { path: '/category',component: Category},
+    { path: '/search',component: Search},
     { path: '/archive',component: Archive},
     { path: '/article/:id',component: Article},
     { path: '*', components: NOTFOUND },

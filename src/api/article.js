@@ -107,3 +107,16 @@ export function getArticleByMonth(year,month,pageNum,pageSize) {
         }
     })
 }
+
+
+export function searchArticle(keyword,num,size) {
+    return request({
+        url: URL + '/search',
+        method: 'GET',
+        params:{
+            keyword: keyword,
+            pageNum: num,
+            pageSize: size
+        }
+    })
+}
