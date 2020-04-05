@@ -1,12 +1,12 @@
 <template>
     <div id="about">
-        <v-row justify="center">
-            <v-col cols="8">
-                <v-img style="border-radius: 8px" max-height="200px"  src="https://i.loli.net/2020/04/04/pOebh9P67fWzyaR.png">
+<!--        <v-row justify="center">-->
+<!--            <v-col cols="8">-->
+<!--                <v-img style="border-radius: 8px" max-height="200px"  src="https://i.loli.net/2020/04/04/pOebh9P67fWzyaR.png">-->
 
-                </v-img>
-            </v-col>
-        </v-row>
+<!--                </v-img>-->
+<!--            </v-col>-->
+<!--        </v-row>-->
         <v-row justify="center">
             <v-col cols="8">
                 <div class="title">关于博客 <span class="caption">About</span></div>
@@ -62,10 +62,10 @@
                                 <v-text-field outlined dense solo v-model="email" :rules="emailRules" label="*电子邮箱 E-mail" required></v-text-field>
                             </v-col>
                             <v-col cols="8" class="mt-0 pt-0">
-                                <v-textarea solo outlined dense name="input-7-4" placeholder="写下你的留言"></v-textarea>
+                                <v-textarea solo outlined dense v-model="content" placeholder="写下你的留言"></v-textarea>
                             </v-col>
                         </v-row>
-                        <div><v-btn class="my-btn" depressed color="primary">发表留言 <span class="caption"> Post Message</span></v-btn></div>
+                        <div><v-btn class="my-btn" @click="leaveMess" depressed color="primary">发表留言 <span class="caption"> Post Message</span></v-btn></div>
                     </v-container>
                 </v-form>
             </v-col>
@@ -75,20 +75,22 @@
 
 <script>
 
+    import {leaveMessage} from "@/api/common";
+
     export default {
         name: "About",
         data(){
             return{
                 valid: false,
+                content: '',
                 nickname: '',
                 nameRules: [
                     v => !!v || 'Name is required',
-
                 ],
                 email: '',
                 emailRules: [
-                    v => !!v || 'E-mail格式不正确',
-                    v => /.+@.+/.test(v) || 'E-mail must be valid',
+
+                    v => /.+@.+/.test(v) || 'E-mail格式不正确',
                 ],
                 blog: {},
                 blogger: {
@@ -104,6 +106,15 @@
                 this.blog = JSON.parse(sessionStorage.getItem("blog"))
                 this.blogger = JSON.parse(sessionStorage.getItem("blogger"))
             },
+            leaveMess(){
+                leaveMessage(this.nickname,this.email,this.content).then(res =>{
+                    const re = res;
+                    if(re.code===2000){
+                        this.$toast(re.message);
+
+                    }
+                })
+            }
         },
     }
 </script>

@@ -1,11 +1,11 @@
 <template>
     <div id="links">
-        <v-row justify="center">
-            <v-col cols="8">
-                <v-img style="border-radius: 8px" max-height="200px" src="https://i.loli.net/2020/03/27/Rj8mhbcaPuTXoFJ.jpg">
-                </v-img>
-            </v-col>
-        </v-row>
+<!--        <v-row justify="center">-->
+<!--            <v-col cols="8">-->
+<!--                <v-img style="border-radius: 8px" max-height="200px" src="https://i.loli.net/2020/03/27/Rj8mhbcaPuTXoFJ.jpg">-->
+<!--                </v-img>-->
+<!--            </v-col>-->
+<!--        </v-row>-->
         <v-row justify="center">
             <v-col cols="8">
                 <div class="title">相关链接 <span class="caption">Links</span></div>

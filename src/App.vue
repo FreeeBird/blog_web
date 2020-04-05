@@ -37,7 +37,7 @@
         </v-btn>
         <v-row justify="center">
           <v-col cols="3" class="mx-auto">
-            <div class="title my-title">关于我们 <span class="caption">About Us</span></div>
+            <div class="title my-title">关于博客 <span class="caption">About Blog</span></div>
             <div class="caption my-2">{{blog.description}}</div>
             <div class="subtitle-2">
             <v-btn icon>

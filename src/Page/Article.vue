@@ -48,10 +48,10 @@
                                 <v-text-field outlined dense solo v-model="email" :rules="emailRules" label="电子邮箱 E-mail" required></v-text-field>
                             </v-col>
                             <v-col cols="8" class="mt-0 pt-0">
-                                <v-textarea solo outlined dense name="input-7-4" placeholder="写下你的评论"></v-textarea>
+                                <v-textarea solo outlined dense v-model="content" placeholder="写下你的评论"></v-textarea>
                             </v-col>
                         </v-row>
-                        <div><v-btn class="my-btn" depressed color="primary">发表评论 <span class="caption"> Post Comment</span></v-btn></div>
+                        <div><v-btn class="my-btn" @click="postCom" depressed color="primary">发表评论 <span class="caption"> Post Comment</span></v-btn></div>
                     </v-container>
                 </v-form>
                 <v-divider></v-divider>
@@ -60,21 +60,22 @@
                     <v-col cols="8">
                         <v-card flat class="mx-auto mb-1" light v-for="(item,i) in comments" :key="i">
                             <v-card-title>
-                                <v-avatar left color="accent">
-                                    <v-img class="elevation-6" src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"></v-img>
+                                <v-avatar left color="secondary">
+<!--                                    <v-img class="elevation-6" src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"></v-img>-->
+                                    <v-icon large color="primary">mdi-account</v-icon>
                                 </v-avatar>
                                 <span class="ml-1 title font-weight-light">{{item.nickname}}</span>
+
                             </v-card-title>
                             <v-card-text class="caption black--text font-weight-bold pb-0">
-<!--                                "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."-->
-                                "{{item.content}}"
+                                {{item.content}}
                             </v-card-text>
                             <v-card-actions class="my-0 pt-0">
                                 <v-list-item class="caption">
                                     <v-row align="center" justify="start">
                                         <span class=" mr-2">#{{i+1}}</span>
                                         <span class="mr-1">·</span>
-                                        <span class="subheading mr-2">{{article.updateTime|dateFmt}}</span>
+                                        <span class="subheading mr-2">{{article.updateTime|dateFmt("YYYY-MM-DD HH:mm")}}</span>
 <!--                                        <span class="mr-1">·</span>-->
 <!--                                        <a class="subheading">@ Talor</a>-->
                                     </v-row>
@@ -82,7 +83,9 @@
                             </v-card-actions>
                             <v-divider></v-divider>
                         </v-card>
+
                     </v-col>
+                    <v-pagination style="justify-content: start" :length="length" circle v-model="pageNum" @click="getCom" total-visible="5"></v-pagination>
                 </v-row>
             </v-col>
         </v-row>
@@ -90,14 +93,17 @@
 </template>
 
 <script>
-    import {getArticleById} from "@/api/article";
-    import {blogger} from "@/api/common";
+    import {getArticleById, getComments, postComment} from "@/api/article";
 
     export default {
         name: "Article",
         data(){
             return{
-                str: "",
+                pageNum: 1,
+                aid: 0,
+                pageSize:10,
+                length: 0,
+                content: "",
                 valid: false,
                 nickname: '',
                 nameRules: [
@@ -125,9 +131,6 @@
                 },
                 comments:[
                     { id : 1,nickname:'Jeff',content: '费劲儿可能否成'},
-                    { id : 2,nickname:'Alantic',content: '没感觉就开始了'},
-                    { id : 3,nickname:'魔人',content: '免费的房间嗯放得开就'},
-                    { id : 4,nickname:'乔瑞风',content: '官方电话不规范大部分大幅度'},
                 ],
             }
         },
@@ -136,15 +139,34 @@
         },
         methods:{
             getData() {
-                const num = this.$route.params.id
-                getArticleById(num).then(response =>{
+                this.blogger = JSON.parse(sessionStorage.getItem('blogger'))
+                this.aid = this.$route.params.id
+                getArticleById(this.aid ).then(response =>{
                     const res = response
                     this.article = res.data
                 })
-                blogger().then(res => {
-                    this.blogger = res.data
+                this.getCom()
+            },
+            getCom(){
+                getComments(this.aid ,this.pageNum-1,this.pageSize).then(res=>{
+                    const re =res
+                    if(re.code!=2000){
+                        this.$toast(re.message)
+                        return
+                    }
+                    this.comments = re.data.content
+                    this.length = re.data.totalPages
                 })
             },
+            postCom(){
+                postComment(this.aid ,this.nickname,this.email,this.content).then(res =>{
+                    const re = res;
+                    if(re.code===2000){
+                        this.$toast(re.message);
+                        this.$set(this.comments,0,re.data)
+                    }
+                })
+            }
         },
     }
 </script>

@@ -14,6 +14,31 @@ export function getArticleById(id) {
     })
 }
 
+export function getComments(id,num,size) {
+    return request({
+        url:URL+'/'+ id+'/comment',
+        method:'GET',
+        params:{
+            pageNum: num,
+            pageSize:size
+        }
+
+    })
+}
+
+export function postComment(aid,nickname,email,content) {
+    return request({
+        url:URL+'/'+ aid+'/comment',
+        method:'POST',
+        data:{
+            nickname: nickname,
+            email: email,
+            content: content
+        }
+
+    })
+}
+
 /**
  * 获取所有
  * @returns {AxiosPromise}

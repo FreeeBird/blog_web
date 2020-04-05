@@ -29,3 +29,15 @@ export function getStatistics() {
         method: 'get'
     })
 }
+
+export function leaveMessage(nickname,email,content) {
+    return request({
+        url: '/message',
+        method: 'POST',
+        data:{
+            nickname: nickname,
+            email: email,
+            content: content
+        }
+    })
+}
