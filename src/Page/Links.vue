@@ -39,25 +39,12 @@
         data(){
             return{
                 blog: {},
-                blogger: {
-                    address: "",
-                    email: "1097@qq.com",
-                    id: 1,
-                    introduction: "",
-                    nickname: "",
-                    password: "",
-                    portraitUrl: "",
-                    username: "",
-                },
-                keywords:[
-                    "java","Vue"
-                ],
+                blogger: {},
                 links:[]
             }
         },
         created:function(){
             this.fetchData()
-            this.keywords = this.blog.keywords.split(" ")
         },
         methods:{
             fetchData(){

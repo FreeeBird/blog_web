@@ -2,7 +2,7 @@
     <div id="home">
         <v-row justify="center">
             <v-col cols="9">
-                <v-carousel cycle height="300" hide-delimiter-background :show-arrows="false"  style="border-radius: 8px">
+                <v-carousel hide-delimiters height="300" hide-delimiter-background  style="border-radius: 8px">
                     <v-carousel-item v-for="(art, i) in newArticles" :key="i">
                         <v-card height="100%">
                             <v-img class="fill-height" :src="art.thumbnailUrl">

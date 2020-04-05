@@ -17,10 +17,7 @@
                 <v-card flat class="my-btn" dark>
                     <v-card-title class="headline">{{blog.title}}</v-card-title>
                     <v-card-subtitle>
-                        {{blog.subtitle}}
-                        <v-chip-group dark>
-                            <v-chip v-for="(item, i) in keywords" :key="i">{{item}}</v-chip>
-                        </v-chip-group>
+                        {{blog.keywords}}
                     </v-card-subtitle>
                     <v-card-text>
                         {{ blog.description }}
@@ -37,7 +34,6 @@
                     </v-avatar>
                     <v-card-title class="headline font-weight-black">
                         {{blogger.nickname}}
-
                     </v-card-title>
                     <div color="accent" class="caption ml-2"><v-icon small>mdi-map-marker</v-icon>{{blogger.address}}</div>
                     <v-card-subtitle class="">
@@ -78,7 +74,6 @@
 </template>
 
 <script>
-    import {blogger} from "@/api/common";
 
     export default {
         name: "About",
@@ -97,34 +92,17 @@
                 ],
                 blog: {},
                 blogger: {
-                    address: "",
-                    email: "1097@qq.com",
-                    id: 1,
-                    introduction: "",
-                    nickname: "",
-                    password: "",
-                    portraitUrl: "",
-                    username: "",
                 },
-                keywords:[
-                    "java","Vue"
-                ],
+
             }
         },
         created:function(){
-            this.getBlog()
-            this.getBlogger()
-            this.keywords = this.blog.keywords.split(" ")
+            this.getBlogInfo()
         },
         methods:{
-            getBlog(){
+            getBlogInfo(){
                 this.blog = JSON.parse(sessionStorage.getItem("blog"))
-            },
-            getBlogger(){
-                blogger().then(respense => {
-                    const res = respense
-                    this.blogger = res.data
-                })
+                this.blogger = JSON.parse(sessionStorage.getItem("blogger"))
             },
         },
     }

@@ -63,3 +63,22 @@ export function getArticleByCategory(cid,num,size) {
         }
     })
 }
+
+
+export function getArchiveMonths() {
+    return request({
+        url: URL + '/archive',
+        method: 'GET',
+    })
+}
+
+export function getArticleByMonth(year,month,pageNum,pageSize) {
+    return request({
+        url: URL + '/archive/' + year + '/' + month,
+        method: 'GET',
+        params:{
+            pageNum: pageNum,
+            pageSize: pageSize
+        }
+    })
+}

@@ -3,7 +3,7 @@
 const toastConfig = {
     x: 'left',
     y: 'bottom',
-    color: 'secondary',
+    color: 'primary',
     icon: '',
     iconColor: '',
     classes:[],

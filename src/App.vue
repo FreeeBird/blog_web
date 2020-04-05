@@ -12,8 +12,9 @@
 
         <v-tabs  color="primary" slider-size="4" class="ml-12" align-with-title>
           <v-tab  @click="goTo('/')">首页</v-tab>
-          <v-tab >归档</v-tab>
-          <v-tab @click="goTo('/links')">链接</v-tab>
+          <v-tab @click="goTo('/category')">分类</v-tab>
+          <v-tab @click="goTo('/archive')">归档</v-tab>
+          <v-tab @click="goTo('/links')">友链</v-tab>
           <v-tab  @click="goTo('/about')">关于</v-tab>
         </v-tabs>
         <v-btn rounded icon color="primary" >
@@ -55,7 +56,7 @@
 </template>
 
 <script>
-import {getBlogInfo} from "@/api/common";
+  import {blogger, getBlogInfo} from "@/api/common";
 export default {
   name: 'App',
   components: {
@@ -64,17 +65,10 @@ export default {
   data(){
     return{
       offsetTop: 0,
-      isSearch: false,
       text: 'home',
       keyword: '',
-      blog:{
-        title: "",
-        description: "",
-        subtitle:"",
-        keywords:"",
-        createTime: null,
-        id: 1,
-      },
+      blog:{},
+      blogger:{},
     }
   },
   created: function () {
@@ -89,9 +83,12 @@ export default {
     },
     getBlogInformation(){
       getBlogInfo().then(response => {
-        const res = response
-        this.blog = res.data
+        this.blog = response.data
         sessionStorage.setItem("blog",JSON.stringify(this.blog))
+      })
+      blogger().then(res => {
+        this.blogger = res.data
+        sessionStorage.setItem("blogger",JSON.stringify(this.blogger))
       })
     },
   },
