@@ -13,7 +13,7 @@
         </v-row>
         <v-row justify="center">
             <v-col cols="2">
-                <v-tabs vertical slider-size="4" show-arrows v-model="tabIndex" @change="getArticleByCid">
+                <v-tabs vertical slider-size="4" show-arrows v-model="tabIndex" @change="handleTabChange">
                     <v-tab :key="0">全部</v-tab>
                     <v-tab v-for="(item,i) in categories" :key="i+1" >{{item.name}}</v-tab>
                 </v-tabs>
@@ -84,17 +84,15 @@
                 })
             },
             getArticles(){
-                getAllArticle(this.page-1,this.pageSize).then(res =>{
-                    const re = res
-                    this.articles = re.data.content
-                    this.length = re.data.totalPages
+                getAllArticle(this.page-1,this.pageSize).then(response=>{
+                    const res = response
+                    this.articles = res.data.content
+                    this.length = res.data.totalPages
                 })
             },
             getArticleByCid(){
-                this.page = 1
                 if(this.tabIndex===0){
                     this.getArticles()
-                    return
                 }else{
                     this.cid = this.categories[this.tabIndex-1].id
                     getArticleByCategory(this.cid,this.page-1,this.pageSize).then(res =>{
@@ -103,6 +101,10 @@
                         this.length = re.data.totalPages
                     })
                 }
+            },
+            handleTabChange(){
+                this.page = 1;
+                this.getArticleByCid();
             },
         },
     }

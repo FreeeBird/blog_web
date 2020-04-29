@@ -112,7 +112,7 @@
 </template>
 
 <script>
-    import {blogger, getStatistics} from '@/api/common'
+    import {blogger} from '@/api/common'
     import { getAllCategory, getTop} from "@/api/category";
     import {getAllArticle, getArticleByCategory, getHitArticles, getNewArticles} from "@/api/article";
     export default {
@@ -185,19 +185,19 @@
                 // })
             },
             getArt(){
-                if(this.tab === 0){
+                // if(this.tab === 0){
                     getAllArticle(this.page-1,this.pageSize).then(response=>{
                         const res = response
                         this.articles = res.data.content
                         this.length = res.data.totalPages
                     })
-                }else {
-                    getArticleByCategory(this.categories[this.tab-1].id,0,this.pageSize).then(response =>{
-                        const res = response
-                        this.articles = res.data.content
-                        this.length = res.data.totalPages
-                    })
-                }
+                // }else {
+                //     getArticleByCategory(this.categories[this.tab-1].id,0,this.pageSize).then(response =>{
+                //         const res = response
+                //         this.articles = res.data.content
+                //         this.length = res.data.totalPages
+                //     })
+                // }
             },
         },
     }

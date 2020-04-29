@@ -7,7 +7,7 @@
         </v-row>
         <v-row justify="center">
             <v-col cols="2">
-                <v-tabs vertical slider-size="4" show-arrows v-model="tabIndex" @change="getArticleByMon">
+                <v-tabs vertical slider-size="4" show-arrows v-model="tabIndex" @change="handleTabChange">
                     <v-tab :key="0">全部</v-tab>
                     <v-tab v-for="(item,i) in months" :key="i+1" >{{item.year}} 年 {{item.month}} 月 ({{item.count}})</v-tab>
                 </v-tabs>
@@ -36,7 +36,7 @@
                                 </v-col>
                             </v-row>
                         </v-card>
-                        <v-pagination style="justify-content: start" color="primary" circle v-if="length>0" v-model="page" @input="getArticleByCid" :length="length" total-visible="10"></v-pagination>
+                        <v-pagination style="justify-content: start" color="primary" circle v-if="length>0" v-model="page" @input="getArticleByMon" :length="length" total-visible="10"></v-pagination>
                     </v-col>
                 </v-row>
             </v-col>
@@ -83,7 +83,6 @@
                 })
             },
             getArticleByMon(){
-                this.page = 1
                 if(this.tabIndex===0){
                     this.getArticles()
                     return
@@ -95,6 +94,10 @@
                         this.length = re.totalPages
                     })
                 }
+            },
+            handleTabChange(){
+                this.page = 1;
+                this.getArticleByMon();
             },
         },
     }
