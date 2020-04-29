@@ -23,12 +23,12 @@ export function getLinks() {
     })
 }
 
-export function getStatistics() {
-    return request({
-        url: '/statistics',
-        method: 'get'
-    })
-}
+// export function getStatistics() {
+//     return request({
+//         url: '/statistics',
+//         method: 'get'
+//     })
+// }
 
 export function leaveMessage(nickname,email,content) {
     return request({

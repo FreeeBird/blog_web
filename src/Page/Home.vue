@@ -180,9 +180,9 @@
                 getAllCategory().then(res =>{
                     this.categories =res.data.content
                 })
-                getStatistics().then(res=>{
-                    this.statistics = res.data
-                })
+                // getStatistics().then(res=>{
+                //     this.statistics = res.data
+                // })
             },
             getArt(){
                 if(this.tab === 0){

@@ -170,7 +170,7 @@
         },
     }
 </script>
-
+<style src="../assets/md.css"></style>
 <style scoped>
 .rshaped{
     border-radius: 8px;
@@ -181,24 +181,26 @@
     /*background-image: linear-gradient(-135deg,#2178ff 100%, #ABDCFF 10%);*/
 }
 #art >>> code{
-    margin: 4px;
-    border-radius: 8px;
-    /*border: #2178ff 2px solid;*/
-    display: block;
-    padding: 8px;
-    font-size: 0.8em;
-    background-color: #5fbeaa;
-    color: #fff;
-    overflow: scroll;
+    /*margin: 4px;*/
+    /*border-radius: 8px;*/
+    /*!*border: #2178ff 2px solid;*!*/
+    /*display: block;*/
+    /*padding: 8px;*/
+    /*font-size: 0.8em;*/
+    /*background-color: #5fbeaa;*/
+    /*color: #fff;*/
+    /*overflow: scroll;*/
 }
-#art{
-    background-color: #fff;
-    padding: 10px;
+/*#art{*/
+/*    background-color: #fff;*/
+/*    padding: 10px;*/
 
-}
+/*}*/
 #art >>> img{
     height: auto;
     width: 100%;
     border: 1px solid #2178ff;
 }
+
+
 </style>
