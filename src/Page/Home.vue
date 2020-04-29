@@ -92,7 +92,7 @@
                 <v-card class="mx-auto mb-2" flat>
                     <v-list shaped>
                         <div class="title">分类 <span class="caption">Category</span></div>
-                        <v-list-item v-for="(item,i) in categories" :key="i" @click="goTo(item.id)" class="py-2">
+                        <v-list-item v-for="(item,i) in categories" :key="i"  class="py-2">
                             <v-row>
                                 <v-col cols="12" class="my-back">
                                     <div class="subtitle-2 font-weight-black">
@@ -114,7 +114,7 @@
 <script>
     import {blogger} from '@/api/common'
     import { getAllCategory, getTop} from "@/api/category";
-    import {getAllArticle, getArticleByCategory, getHitArticles, getNewArticles} from "@/api/article";
+    import {getAllArticle, getHitArticles, getNewArticles} from "@/api/article";
     export default {
         name: "Home",
         components: {},
