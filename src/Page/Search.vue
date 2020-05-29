@@ -88,6 +88,7 @@
                     const re = res.data
                     this.articles = re.content
                     this.length = re.totalPages
+                    if(this.length<=0) this.$toast("搜索结果为空");
                 })
             }
         },

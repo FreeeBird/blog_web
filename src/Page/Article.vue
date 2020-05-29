@@ -8,7 +8,7 @@
         <v-row justify="center">
             <v-col cols="8">
                 <div class="my-1"><v-btn class="my-btn" small depressed>{{article.category}}</v-btn></div>
-                <div class="headline font-weight-black my-2">{{article.title}} Impost</div>
+                <div class="headline font-weight-black my-2">{{article.title}} </div>
                 <div class="caption font-weight-thin my-2">{{article.summary}}</div>
                 <div class="caption">
                     <v-avatar size="18">
@@ -51,11 +51,11 @@
                                 <v-textarea solo outlined dense v-model="content" placeholder="写下你的评论"></v-textarea>
                             </v-col>
                         </v-row>
-                        <div><v-btn class="my-btn" @submit="getCom"  depressed color="primary">发表评论 <span class="caption"> Post Comment</span></v-btn></div>
+                        <div><v-btn class="my-btn" @click="postCom"  depressed color="primary">发表评论 <span class="caption"> Post Comment</span></v-btn></div>
                     </v-container>
                 </v-form>
                 <v-divider></v-divider>
-                <div class="subtitle-1">{{ article.comments }} 条评论</div>
+                <div class="subtitle-1">{{ length }} 条评论</div>
                 <v-row>
                     <v-col cols="8">
                         <v-card flat class="mx-auto mb-1" light v-for="(item,i) in comments" :key="i">
@@ -155,7 +155,7 @@
                         return
                     }
                     this.comments = re.data.content
-                    this.length = re.data.totalPages
+                    this.length = re.data.totalElements
                 })
             },
             postCom(){
@@ -163,14 +163,17 @@
                     const re = res;
                     if(re.code===2000){
                         this.$toast(re.message);
-                        this.$set(this.comments,0,re.data)
+                        // this.$set(this.comments,0,re.data)
+                        this.getCom();
+                    }else {
+                        this.$toast(re.message);
                     }
                 })
             }
         },
     }
 </script>
-<style src="../assets/md.css"></style>
+<style src="../assets/md.css" scoped></style>
 <style scoped>
 .rshaped{
     border-radius: 8px;
@@ -181,15 +184,15 @@
     /*background-image: linear-gradient(-135deg,#2178ff 100%, #ABDCFF 10%);*/
 }
 #art >>> code{
-    /*margin: 4px;*/
-    /*border-radius: 8px;*/
-    /*!*border: #2178ff 2px solid;*!*/
-    /*display: block;*/
-    /*padding: 8px;*/
-    /*font-size: 0.8em;*/
-    /*background-color: #5fbeaa;*/
-    /*color: #fff;*/
-    /*overflow: scroll;*/
+    margin: 4px;
+    border-radius: 8px;
+    /*border: #2178ff 2px solid;*/
+    display: block;
+    padding: 8px;
+    font-size: 0.8em;
+    background-color: #5fbeaa;
+    color: #fff;
+    overflow: scroll;
 }
 /*#art{*/
 /*    background-color: #fff;*/

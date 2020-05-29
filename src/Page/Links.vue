@@ -14,7 +14,7 @@
         <v-row justify="center">
             <v-col cols="8">
                 <v-row>
-                    <v-col cols="4" v-for="link in links" :key="link.id" >
+                    <v-col cols="4" v-for="(link,index) in links" :key="index" >
                         <v-card flat color="primary" class="my-btn" dark target="_blank" hover :href="link.url" >
                             <v-card-title>{{link.title}}</v-card-title>
                             <v-card-subtitle>
@@ -50,7 +50,7 @@
             fetchData(){
                 getLinks().then(res =>{
                     const data = res.data
-                    this.links = data.content
+                    this.links = data
                 })
             },
         },

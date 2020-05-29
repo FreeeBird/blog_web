@@ -109,10 +109,7 @@
             leaveMess(){
                 leaveMessage(this.nickname,this.email,this.content).then(res =>{
                     const re = res;
-                    if(re.code===2000){
-                        this.$toast(re.message);
-
-                    }
+                    this.$toast(re.message);
                 })
             }
         },
